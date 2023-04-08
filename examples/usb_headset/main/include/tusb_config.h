@@ -33,7 +33,7 @@ extern "C" {
 //--------------------------------------------------------------------
 
 // defined by compiler flags for flexibility
-#ifndef CFG_TUSB_MCU
+#ifndef CFG_TUSB_MCU OPT_MCU_LPC175X_6X
 #error CFG_TUSB_MCU must be defined
 #endif
 
