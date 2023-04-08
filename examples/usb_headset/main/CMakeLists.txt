@@ -1,6 +1,6 @@
-idf_component_register( SRC_DIRS "src" "." "components"
+idf_component_register( SRC_DIRS "src" "."
                         EXCLUDE_SRCS "src/usb_descriptors.c"
-                        INCLUDE_DIRS include/. components
+                        INCLUDE_DIRS include/.
                         REQUIRES )
 idf_component_get_property(tusb_lib espressif__tinyusb COMPONENT_LIB)
 idf_component_get_property(tusb_path espressif__tinyusb COMPONENT_DIR)
