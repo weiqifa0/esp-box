@@ -26,7 +26,7 @@ extern i2s_chan_handle_t i2s_rx_chan;
 
 #define N_SAMPLE_RATES  TU_ARRAY_SIZE(sample_rates)
 
-#define AUDIO_LENGTH 96
+#define AUDIO_LENGTH 640
 
 /* Blink pattern
  * - 25 ms   : streaming data
@@ -368,7 +368,7 @@ bool tud_audio_tx_done_pre_load_cb(uint8_t rhport, uint8_t itf, uint8_t ep_in, u
     (void)ep_in;
     (void)cur_alt_setting;
 
-    tud_audio_write(mic_buf, 96);
+    tud_audio_write(mic_buf, AUDIO_LENGTH);
     // This callback could be used to fill microphone data separately
     return true;
 }
@@ -380,13 +380,12 @@ bool tud_audio_tx_done_post_load_cb(uint8_t rhport, uint16_t n_bytes_copied, uin
     (void) itf;
     (void) ep_in;
     (void) cur_alt_setting;
-
-    /*** Here to fill audio buffer, only use in audio transmission begin ***/
     size_t bytes_read = 0;
-
-    esp_err_t ret = i2s_channel_read(i2s_rx_chan, &mic_buf, AUDIO_LENGTH * 2, &bytes_read, 0);
-    for (int i = 0; i < AUDIO_LENGTH / 2 ; i++) {
-        mic_buf[i + 1] = mic_buf[2 * (i + 1)];
-    }
+    /*** Here to fill audio buffer, only use in audio transmission begin ***/
+    esp_err_t ret = i2s_channel_read(i2s_rx_chan, &mic_buf, AUDIO_LENGTH, &bytes_read, 0);
+    // for (int i = 0; i < AUDIO_LENGTH / 2 ; i++) {
+    //     //mic_buf[i + 1] = mic_buf[2 * (i + 1)];
+    //     printf("%.2x ", mic_buf[i]);
+    // }
     return ret == ESP_OK ? true : false;
 }

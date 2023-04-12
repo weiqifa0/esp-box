@@ -11,15 +11,15 @@ extern "C" {
 
 #include "esp_err.h"
 
-#define SAMPLE_RATE     (48000)
+#define SAMPLE_RATE     (16000)
 #define DEFAULT_VOLUME  (80)
-#define CHANNEL         (2)
+#define CHANNEL         (1)
 #define WIDTH           (16)
 
 /**
  * @brief Initialize the usb headset function
- * 
- * @return esp_err_t 
+ *
+ * @return esp_err_t
  *         ESP_OK   Success
  *         ESP_FAIL Failed
  */

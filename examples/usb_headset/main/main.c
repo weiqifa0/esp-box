@@ -27,11 +27,7 @@ void app_main(void)
 
     /* Configure I2S peripheral and Power Amplifier */
     i2s_std_config_t i2s_config = {
-        .clk_cfg = {
-            .sample_rate_hz = SAMPLE_RATE,
-            .clk_src = I2S_CLK_SRC_DEFAULT,
-            .mclk_multiple = I2S_MCLK_MULTIPLE_384,
-        },
+        .clk_cfg = I2S_STD_CLK_DEFAULT_CONFIG(SAMPLE_RATE),
         .slot_cfg = I2S_STD_PHILIP_SLOT_DEFAULT_CONFIG((i2s_data_bit_width_t)WIDTH, (i2s_slot_mode_t)CHANNEL),
         .gpio_cfg = BSP_I2S_GPIO_CFG,
     };
